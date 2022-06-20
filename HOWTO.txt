@@ -1,0 +1,30 @@
+
+
+ASP .NET Core
+    É um Framework para criação de app web
+    Usa o sistema de templates @razor engine
+    
+Padrão MVC
+    Estrutura: View, Controllers, Models e também ViewModels
+
+Entity Framework (ORM ou Object Relational Mapping é uma técnica de mapeamento objeto
+ relacional que visa criar uma camada de mapeamento entre nosso modelo de objetos 
+ (aplicação) e nosso modelo relacional (banco de dados) de forma a abstrair o acesso ao mesmo.)
+
+
+ 1- Instalar MySql (MySQL Community Server): https://www.mysql.com/downloads/
+    Porta padrão: 3306 | X protocol port: 33060
+    root psw: admin-vv
+    ----- usuário
+    usu: devel
+    psw: devel-vv
+
+2- Testar se o sql server está rodando:
+    Verificar Serviço: Iniciar > Serviços > MySQL80
+
+3- Ver as opções de criação de projetos
+    dotnet new
+
+4- Criar projeto MVC:
+    mkdir Nome_Projeto
+    dotnew new mvc
