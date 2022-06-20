@@ -4,9 +4,16 @@ using Cerveja.Data;
 
 
 var builder = WebApplication.CreateBuilder(args);
+/*builder.Services.AddDbContext<CervejaContext>(options =>
+    options.UseMySql(ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("CervejaContext")), builder => builder.MigrationsAssembly("CervejaContext")));
+*/
 builder.Services.AddDbContext<CervejaContext>(options =>
-    //options.UseMySql(Configuration.GetConnectionString("CervejaContext"), builder => builder.MigrationsAssembly("CervejaContext")));
-    options.UseSqlServer(builder.Configuration.GetConnectionString("CervejaContext") ?? throw new InvalidOperationException("Connection string 'CervejaContext' not found.")));
+{
+    var connectionString = builder.Configuration.GetConnectionString("CervejaContext");
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+});
+
+//options.UseSqlServer(builder.Configuration.GetConnectionString("CervejaContext") ?? throw new InvalidOperationException("Connection string 'CervejaContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
