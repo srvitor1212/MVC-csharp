@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Cerveja.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<CervejaContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CervejaContext") ?? throw new InvalidOperationException("Connection string 'CervejaContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
