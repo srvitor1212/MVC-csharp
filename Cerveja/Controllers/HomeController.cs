@@ -1,6 +1,7 @@
 ﻿using Cerveja.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Cerveja.Models.ViewModels;
 
 namespace Cerveja.Controllers
 {

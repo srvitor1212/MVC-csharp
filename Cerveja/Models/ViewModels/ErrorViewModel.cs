@@ -1,4 +1,4 @@
-namespace Cerveja.Models
+namespace Cerveja.Models.ViewModels
 {
     public class ErrorViewModel
     {
