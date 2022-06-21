@@ -4,9 +4,7 @@ using Cerveja.Data;
 
 
 var builder = WebApplication.CreateBuilder(args);
-/*builder.Services.AddDbContext<CervejaContext>(options =>
-    options.UseMySql(ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("CervejaContext")), builder => builder.MigrationsAssembly("CervejaContext")));
-*/
+
 builder.Services.AddDbContext<CervejaContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("CervejaContext");
