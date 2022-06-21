@@ -1,4 +1,6 @@
-﻿namespace Cerveja.Models
+﻿using System.Linq;
+
+namespace Cerveja.Models
 {
     public class Departamento
     {
@@ -14,6 +16,16 @@
         {
             Id = id;
             Nome = nome;
+        }
+
+
+        public void AddVendedor(Vendedor vend)
+        {
+            this.Vendedores.Add(vend);
+        }
+        public double TotalPedidos(DateTime inicio, DateTime final)
+        {
+            return this.Vendedores.Sum(v => v.TotalPedidos(inicio, final));
         }
     }
 }

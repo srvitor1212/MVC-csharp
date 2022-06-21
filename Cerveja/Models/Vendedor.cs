@@ -1,4 +1,6 @@
-﻿namespace Cerveja.Models
+﻿using System.Linq;
+
+namespace Cerveja.Models
 
 {
     public class Vendedor
@@ -21,6 +23,20 @@
             DataNascimento = dataNascimento;
             Salario = salario;
             Departamento = departamento;
+        }
+
+
+        public void AddPedido(Pedido ped)
+        {
+            this.Pedidos.Add(ped);
+        }
+        public void RemoverPedido(Pedido ped)
+        {
+            this.Pedidos.Remove(ped);
+        }
+        public double TotalPedidos(DateTime inicio, DateTime final)
+        {
+            return this.Pedidos.Where(ped => ped.Data >= inicio && ped.Data <= final).Sum(Ped => Ped.Valor);
         }
     }
 }

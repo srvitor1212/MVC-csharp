@@ -23,5 +23,11 @@ namespace Cerveja.Models
             Status = status;
             Vendedor = vendedor;
         }
+
+
+        public void AddRotulo(Rotulo rot)
+        {
+            this.Rotulos.Add(rot); 
+        }
     }
 }
