@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Cerveja.Models;
 
-namespace Cerveja.Data
+namespace Cerveja.Models
 {
     public class CervejaContext : DbContext
     {
@@ -14,6 +14,9 @@ namespace Cerveja.Data
         {
         }
 
-        public DbSet<Cerveja.Models.Rotulo>? Rotulo { get; set; }
+        public DbSet<Rotulo> Rotulo { get; set; }
+        public DbSet<Vendedor> Vendedor { get; set; }
+        public DbSet<Pedido> Pedido { get; set; }
+        public DbSet<Departamento> Departamento { get; set; }
     }
 }
