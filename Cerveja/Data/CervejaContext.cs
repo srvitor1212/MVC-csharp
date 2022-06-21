@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Cerveja.Models;
 
-namespace Cerveja.Models
+namespace Cerveja.Data
 {
     public class CervejaContext : DbContext
     {
