@@ -56,7 +56,7 @@ namespace Cerveja.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Rotulo rotulo)
+        public async Task<IActionResult> Create([Bind("Id,Nome")] Rotulo rotulo)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace Cerveja.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Rotulo rotulo)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] Rotulo rotulo)
         {
             if (id != rotulo.Id)
             {
