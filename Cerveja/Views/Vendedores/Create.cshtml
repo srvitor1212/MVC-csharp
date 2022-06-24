@@ -1,4 +1,4 @@
-﻿@model Cerveja.Models.Vendedor
+﻿@model Cerveja.Models.ViewModels.VendedorFormViewModel
 
 @{
     ViewData["Title"] = "Criar Novo";
@@ -11,18 +11,24 @@
     <div class="col-md-4">
         <form asp-action="Create"> <!--Método POST-->
             <div class="form-text">
-                <label asp-for="Nome" class="form-label"></label>
-                <input asp-for="Nome" class="form-text" />
+                <label asp-for="Vendedor.Nome" class="form-label"></label>
+                <input asp-for="Vendedor.Nome" class="form-text" />
             </div>
             <div class="form-text">
-                <label asp-for="DataNascimento" class="form-label"></label>
-                <input asp-for="DataNascimento" class="form-text" />
+                <label asp-for="Vendedor.DataNascimento" class="form-label"></label>
+                <input asp-for="Vendedor.DataNascimento" class="form-text" />
             </div>
             <div class="form-text">
-                <label asp-for="Salario" class="form-label"></label>
-                <input asp-for="Salario" class="form-text" />
+                <label asp-for="Vendedor.Salario" class="form-label"></label>
+                <input asp-for="Vendedor.Salario" class="form-text" />
+            </div>
+            <div class="form-text">
+                <label asp-for="Vendedor.Departamento.Id" class="form-label"></label>
+                <select asp-for="Vendedor.Departamento.Id" asp-items="@(new SelectList(Model.Departamentos,"Id","Nome"))" class="form-text"></select>
             </div>
 
+
+            <!-- Botões -->
             <div class="form-text">
                 <input type="submit" value="Criar" class="btn-success" />
             </div>

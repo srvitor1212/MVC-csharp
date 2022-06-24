@@ -1,4 +1,5 @@
-﻿using Cerveja.Models;
+﻿using Cerveja.Models.ViewModels;
+using Cerveja.Models;
 using Cerveja.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,10 +8,12 @@ namespace Cerveja.Controllers
     public class VendedoresController : Controller
     {
         private readonly VendedorService _vendedorService;
+        private readonly DepartamentoService _departamentoService;
 
-        public VendedoresController(VendedorService vendedorService)
+        public VendedoresController(VendedorService vendedorService, DepartamentoService departamentoService)
         {
             this._vendedorService = vendedorService;
+            this._departamentoService = departamentoService;
         }
 
         public IActionResult Index()
@@ -21,7 +24,9 @@ namespace Cerveja.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            var deps = _departamentoService.FindAll();
+            var viewModel = new VendedorFormViewModel { Departamentos = deps };
+            return View(viewModel);
         }
 
         [HttpPost]  //Isso é uma Notation
