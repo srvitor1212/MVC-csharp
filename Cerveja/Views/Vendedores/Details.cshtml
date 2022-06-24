@@ -29,15 +29,10 @@
             @Html.DisplayFor(model => model.Salario)
         </dd>
 
-        <!--
-            //todo: melhoria: Incluir o nome do departamento
-        <dt>
-            @Html.DisplayNameFor(model => model.Departamento)
-        </dt>
+        <dt>Departamento</dt>
         <dd>
-            @Html.DisplayFor(model => model.Departamento)
+            @Html.DisplayFor(model => model.Departamento.Nome)
         </dd>
-        -->
 
         <!-- Botões -->
         <a asp-action="Index" class="btn-light">Voltar</a>

@@ -37,7 +37,14 @@ namespace Cerveja.Services
 
         public Vendedor FindById(int id)
         {
-            return _context.Vendedor.FirstOrDefault(obj => obj.Id == id);
+            //todo: não sei se ta certo
+            var vend = _context.Vendedor.FirstOrDefault(obj => obj.Id == id);
+            var dep = _context.Departamento.Find(vend.DepartamentoId);
+            vend.Departamento = dep;
+            return vend;
+            //todo: ....
+
+            //return _context.Vendedor.FirstOrDefault(obj => obj.Id == id);
         }
 
         public void Remove(int id)
