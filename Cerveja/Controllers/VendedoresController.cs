@@ -1,4 +1,5 @@
-﻿using Cerveja.Services;
+﻿using Cerveja.Models;
+using Cerveja.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cerveja.Controllers
@@ -16,6 +17,19 @@ namespace Cerveja.Controllers
         {
             var list = _vendedorService.FindAll();
             return View(list);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]  //Isso é uma Notation
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Vendedor vendedor)
+        {
+            _vendedorService.Insert(vendedor);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

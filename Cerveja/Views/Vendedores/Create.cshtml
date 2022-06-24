@@ -1,0 +1,31 @@
+﻿@model Cerveja.Models.Vendedor
+
+@{
+    ViewData["Title"] = "Criar Novo";
+}
+
+<h2>@ViewData["Title"]</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create"> <!--Método POST-->
+            <div class="form-text">
+                <label asp-for="Nome" class="form-label"></label>
+                <input asp-for="Nome" class="form-text" />
+            </div>
+            <div class="form-text">
+                <label asp-for="DataNascimento" class="form-label"></label>
+                <input asp-for="DataNascimento" class="form-text" />
+            </div>
+            <div class="form-text">
+                <label asp-for="Salario" class="form-label"></label>
+                <input asp-for="Salario" class="form-text" />
+            </div>
+
+            <div class="form-text">
+                <input type="submit" value="Criar" class="btn-success" />
+            </div>
+        </form>
+    </div>
+</div>

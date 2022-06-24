@@ -9,7 +9,7 @@ namespace Cerveja.Models
         public string Nome { get; set; }
         public DateTime DataNascimento { get; set; }
         public double Salario { get; set; }
-        public Departamento Departamento { get; set; }
+        public Departamento Departamento { get; set; }      // Isso daqui já cria uma coluna "DepartamentoId" no DB
         public ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();
 
 
