@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Cerveja.Data;
+using Cerveja.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
-/*builder.Services.AddDbContext<CervejaContext>(options =>
-    options.UseMySql(ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("CervejaContext")), builder => builder.MigrationsAssembly("CervejaContext")));
-*/
+
 builder.Services.AddDbContext<CervejaContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("CervejaContext");
@@ -17,6 +16,9 @@ builder.Services.AddDbContext<CervejaContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<VendedorService>();
+builder.Services.AddScoped<DepartamentoService>();
+builder.Services.AddScoped<DadosFake>();        //todo: Não tenho certeza se é o correto
 
 var app = builder.Build();
 

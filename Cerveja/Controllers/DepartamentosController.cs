@@ -10,87 +10,87 @@ using Cerveja.Models;
 
 namespace Cerveja.Controllers
 {
-    public class RotulosController : Controller
+    public class DepartamentosController : Controller
     {
         private readonly CervejaContext _context;
 
-        public RotulosController(CervejaContext context)
+        public DepartamentosController(CervejaContext context)
         {
             _context = context;
         }
 
-        // GET: Rotulos
+        // GET: Departamentos
         public async Task<IActionResult> Index()
         {
-              return _context.Rotulo != null ? 
-                          View(await _context.Rotulo.ToListAsync()) :
-                          Problem("Entity set 'CervejaContext.Rotulo'  is null.");
+              return _context.Departamento != null ? 
+                          View(await _context.Departamento.ToListAsync()) :
+                          Problem("Entity set 'CervejaContext.Departamento'  is null.");
         }
 
-        // GET: Rotulos/Details/5
+        // GET: Departamentos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Rotulo == null)
+            if (id == null || _context.Departamento == null)
             {
                 return NotFound();
             }
 
-            var rotulo = await _context.Rotulo
+            var departamento = await _context.Departamento
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (rotulo == null)
+            if (departamento == null)
             {
                 return NotFound();
             }
 
-            return View(rotulo);
+            return View(departamento);
         }
 
-        // GET: Rotulos/Create
+        // GET: Departamentos/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Rotulos/Create
+        // POST: Departamentos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome")] Rotulo rotulo)
+        public async Task<IActionResult> Create([Bind("Id,Nome")] Departamento departamento)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(rotulo);
+                _context.Add(departamento);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(rotulo);
+            return View(departamento);
         }
 
-        // GET: Rotulos/Edit/5
+        // GET: Departamentos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Rotulo == null)
+            if (id == null || _context.Departamento == null)
             {
                 return NotFound();
             }
 
-            var rotulo = await _context.Rotulo.FindAsync(id);
-            if (rotulo == null)
+            var departamento = await _context.Departamento.FindAsync(id);
+            if (departamento == null)
             {
                 return NotFound();
             }
-            return View(rotulo);
+            return View(departamento);
         }
 
-        // POST: Rotulos/Edit/5
+        // POST: Departamentos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] Rotulo rotulo)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] Departamento departamento)
         {
-            if (id != rotulo.Id)
+            if (id != departamento.Id)
             {
                 return NotFound();
             }
@@ -99,12 +99,12 @@ namespace Cerveja.Controllers
             {
                 try
                 {
-                    _context.Update(rotulo);
+                    _context.Update(departamento);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RotuloExists(rotulo.Id))
+                    if (!DepartamentoExists(departamento.Id))
                     {
                         return NotFound();
                     }
@@ -115,49 +115,49 @@ namespace Cerveja.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(rotulo);
+            return View(departamento);
         }
 
-        // GET: Rotulos/Delete/5
+        // GET: Departamentos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Rotulo == null)
+            if (id == null || _context.Departamento == null)
             {
                 return NotFound();
             }
 
-            var rotulo = await _context.Rotulo
+            var departamento = await _context.Departamento
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (rotulo == null)
+            if (departamento == null)
             {
                 return NotFound();
             }
 
-            return View(rotulo);
+            return View(departamento);
         }
 
-        // POST: Rotulos/Delete/5
+        // POST: Departamentos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Rotulo == null)
+            if (_context.Departamento == null)
             {
-                return Problem("Entity set 'CervejaContext.Rotulo'  is null.");
+                return Problem("Entity set 'CervejaContext.Departamento'  is null.");
             }
-            var rotulo = await _context.Rotulo.FindAsync(id);
-            if (rotulo != null)
+            var departamento = await _context.Departamento.FindAsync(id);
+            if (departamento != null)
             {
-                _context.Rotulo.Remove(rotulo);
+                _context.Departamento.Remove(departamento);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool RotuloExists(int id)
+        private bool DepartamentoExists(int id)
         {
-          return (_context.Rotulo?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Departamento?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
