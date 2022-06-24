@@ -14,6 +14,11 @@ namespace Cerveja.Services
 
         public List<Vendedor> FindAll()
         {
+            //todo: uma gambiarra para inserir dados no banco
+            DadosFake df = new DadosFake(_context);
+            df.InserirDadosFake();
+            //todo: uma gambiarra para inserir dados no banco
+
             return _context.Vendedor.ToList();
         }
 

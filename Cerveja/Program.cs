@@ -17,6 +17,7 @@ builder.Services.AddDbContext<CervejaContext>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<VendedorService>();
+builder.Services.AddScoped<DadosFake>();        //todo: Não tenho certeza se é o correto
 
 var app = builder.Build();
 
