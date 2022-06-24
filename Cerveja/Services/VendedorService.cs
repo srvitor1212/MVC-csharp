@@ -19,7 +19,16 @@ namespace Cerveja.Services
             df.InserirDadosFake();
             //todo: uma gambiarra para inserir dados no banco
 
-            return _context.Vendedor.ToList();
+            //todo: aqui eu também não tenho certeza se é a melhor forma de se fazer, mas funciona
+            var vendedores = _context.Vendedor.ToList();
+            foreach (var v in vendedores)
+            {
+                var dep = _context.Departamento.Find(v.DepartamentoId);
+                v.Departamento = dep;
+            }
+            //todo: ...
+
+            return vendedores;
         }
 
         public void Insert(Vendedor obj)
