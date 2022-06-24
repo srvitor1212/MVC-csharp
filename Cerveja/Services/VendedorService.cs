@@ -24,6 +24,7 @@ namespace Cerveja.Services
 
         public void Insert(Vendedor obj)
         {
+            obj.Departamento = _context.Departamento.First(); //todo: temporário só para inserir algum departamento
             _context.Add(obj);
             _context.SaveChanges();
         }
