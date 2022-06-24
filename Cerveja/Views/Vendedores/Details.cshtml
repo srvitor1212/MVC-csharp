@@ -1,0 +1,45 @@
+﻿@model Cerveja.Models.Vendedor
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <h4>Vendedor</h4>
+    <hr />
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataNascimento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataNascimento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Salario)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Salario)
+        </dd>
+
+        <!--
+            //todo: melhoria: Incluir o nome do departamento
+        <dt>
+            @Html.DisplayNameFor(model => model.Departamento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Departamento)
+        </dd>
+        -->
+
+        <!-- Botões -->
+        <a asp-action="Index" class="btn-light">Voltar</a>
+    </dl>
+</div>

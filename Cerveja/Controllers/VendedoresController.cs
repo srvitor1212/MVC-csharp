@@ -16,12 +16,14 @@ namespace Cerveja.Controllers
             this._departamentoService = departamentoService;
         }
 
+        //---------------------------------------------------------------------------------------------
         public IActionResult Index()
         {
             var list = _vendedorService.FindAll();
             return View(list);
         }
 
+        //---------------------------------------------------------------------------------------------
         public IActionResult Create()
         {
             var deps = _departamentoService.FindAll();
@@ -37,7 +39,7 @@ namespace Cerveja.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
+        //---------------------------------------------------------------------------------------------
         public IActionResult Delete(int? id)
         {
             if (id == null)
@@ -56,6 +58,19 @@ namespace Cerveja.Controllers
         {
             _vendedorService.Remove(id);
             return RedirectToAction(nameof(Index));
+        }
+
+        //---------------------------------------------------------------------------------------------
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var obj = _vendedorService.FindById(id.Value);
+            if (obj == null)
+                return NotFound();
+
+            return View(obj);
         }
     }
 }
