@@ -1,5 +1,4 @@
-﻿
-namespace Cerveja.Models.ViewModels
+﻿namespace Cerveja.Models.ViewModels
 {
     public class VendedorFormViewModel
     {

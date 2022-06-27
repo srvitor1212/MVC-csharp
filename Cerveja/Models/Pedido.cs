@@ -9,6 +9,7 @@ namespace Cerveja.Models
         public double Valor { get; set; }
         public StatusPedido Status { get; set; }
         public Vendedor Vendedor { get; set; }
+        public int VendedorId { get; set; }
         public ICollection<Rotulo> Rotulos { get; set; } = new List<Rotulo>();
 
 

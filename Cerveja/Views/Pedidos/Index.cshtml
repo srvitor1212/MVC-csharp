@@ -25,18 +25,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
-
-            <!--
-            <th>
-                @Html.DisplayNameFor(model => model.Vendedor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rotulos)
-            </th>
-            -->
-            
-            
-            <th>Departamento</th>
+            <th>Vendedor</th>
 
             <!-- Botões -->
             <th></th>
@@ -57,18 +46,10 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Status)
-                </td>
-
-                <!--
+                </td>                
                 <td>
-                    @Html.DisplayFor(modelItem => item.Vendedor)
+                    @Html.DisplayFor(modelItem => item.Vendedor.Nome)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Rotulos)
-                </td>
-                -->
-
-
 
                 <!-- Botões -->
                 <td>

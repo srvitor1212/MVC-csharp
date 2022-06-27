@@ -15,6 +15,11 @@ namespace Cerveja.Services
         public List<Pedido> FindAll()
         {
             var pedidos = _context.Pedido.ToList();
+            foreach (var pedido in pedidos)
+            {
+                var vend = _context.Vendedor.Find(pedido.VendedorId);
+                pedido.Vendedor = vend;
+            }
             return pedidos;
         }
     }
