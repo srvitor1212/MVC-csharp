@@ -89,5 +89,14 @@ namespace Cerveja.Controllers
 
             return View(viewModel);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Vendedor vendedor)
+        {
+            _vendedorService.Update(vendedor);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

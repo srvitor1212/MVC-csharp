@@ -55,5 +55,21 @@ namespace Cerveja.Services
             _context.Vendedor.Remove(obj);
             _context.SaveChanges();
         }
+
+        //-------------------------------------------------------------------------------------------------------------
+        public string Update(Vendedor vendedor)
+        {
+            /*
+            var obj = _context.Vendedor.Find(vendedor.Id);
+            if (obj == null)
+                return "NotFound";  //todo: deve ter uma maneira legal de fazer isso aqui
+            */
+
+            vendedor.DepartamentoId = vendedor.Departamento.Id; //todo: tive que fazer para gravar certinho
+            _context.Vendedor.Update(vendedor);
+            
+            _context.SaveChanges(); //todo: DANDO ERRO AQUI
+            return "Success";
+        }
     }
 }
