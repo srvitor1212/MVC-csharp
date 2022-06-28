@@ -15,7 +15,7 @@ builder.Services.AddDbContext<CervejaContext>(options =>
 //options.UseSqlServer(builder.Configuration.GetConnectionString("CervejaContext") ?? throw new InvalidOperationException("Connection string 'CervejaContext' not found.")));
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(); 
 
 // Meus
 builder.Services.AddScoped<VendedorService>();
