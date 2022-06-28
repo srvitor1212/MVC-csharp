@@ -1,5 +1,6 @@
 ﻿using Cerveja.Data;
 using Cerveja.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cerveja.Services
 {
@@ -19,15 +20,7 @@ namespace Cerveja.Services
             df.InserirDadosFake();
             //todo: uma gambiarra para inserir dados no banco
 
-            //todo: aqui eu também não tenho certeza se é a melhor forma de se fazer, mas funciona
-            var vendedores = _context.Vendedor.ToList();
-            foreach (var v in vendedores)
-            {
-                var dep = _context.Departamento.Find(v.DepartamentoId);
-                v.Departamento = dep;
-            }
-            //todo: ...
-
+            var vendedores = _context.Vendedor.Include(x => x.Departamento).ToList();
             return vendedores;
         }
 
