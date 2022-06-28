@@ -18,7 +18,7 @@ namespace Cerveja.Services
             //todo: uma gambiarra para inserir dados no banco
             DadosFake df = new DadosFake(_context);
             df.InserirDadosFake();
-            //todo: uma gambiarra para inserir dados no banco
+            //...................................
 
             var vendedores = _context.Vendedor.Include(x => x.Departamento).ToList();
             return vendedores;
@@ -28,10 +28,10 @@ namespace Cerveja.Services
         {
             
             //todo: provavelmente existe um jeito mais elegante de se fazer
-            //todo: só que sem isso está dando Null em Departamento.Nome
+            //só que sem isso está dando Null em Departamento.Nome
             var dp = _context.Departamento.Find(keyValues: obj.Departamento.Id);
             obj.Departamento = dp;
-            //todo: fim da gambiarra
+            //fim da gambiarra
 
             _context.Add(obj);
             _context.SaveChanges();
@@ -39,14 +39,10 @@ namespace Cerveja.Services
 
         public Vendedor FindById(int id)
         {
-            //todo: não sei se ta certo
-            var vend = _context.Vendedor.FirstOrDefault(obj => obj.Id == id);
-            var dep = _context.Departamento.Find(vend.DepartamentoId);
-            vend.Departamento = dep;
-            return vend;
-            //todo: ....
+            //             |________incluir o obj departamento___________|__pega o primeiro cliente aonde id=id
+            var vendedor = _context.Vendedor.Include(x => x.Departamento).FirstOrDefault(obj => obj.Id == id);
 
-            //return _context.Vendedor.FirstOrDefault(obj => obj.Id == id);
+            return vendedor;
         }
 
         public void Remove(int id)

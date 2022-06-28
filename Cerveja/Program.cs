@@ -21,7 +21,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<VendedorService>();
 builder.Services.AddScoped<DepartamentoService>();
 builder.Services.AddScoped<PedidoService>();
-builder.Services.AddScoped<DadosFake>();        //todo: Não tenho certeza se é o correto
+builder.Services.AddScoped<DadosFake>();        //todo: Usar o Seed Migration, exemplo do chrys
 
 var app = builder.Build();
 
