@@ -13,6 +13,7 @@ namespace Cerveja.Services
             _context = context;
         }
 
+        //-------------------------------------------------------------------------------------------------------------
         public List<Vendedor> FindAll()
         {
             //todo: uma gambiarra para inserir dados no banco
@@ -24,6 +25,7 @@ namespace Cerveja.Services
             return vendedores;
         }
 
+        //-------------------------------------------------------------------------------------------------------------
         public void Insert(Vendedor obj)
         {
             
@@ -37,6 +39,7 @@ namespace Cerveja.Services
             _context.SaveChanges();
         }
 
+        //-------------------------------------------------------------------------------------------------------------
         public Vendedor FindById(int id)
         {
             //             |________incluir o obj departamento___________|__pega o primeiro cliente aonde id=id
@@ -45,6 +48,7 @@ namespace Cerveja.Services
             return vendedor;
         }
 
+        //-------------------------------------------------------------------------------------------------------------
         public void Remove(int id)
         {
             var obj = _context.Vendedor.Find(id);
