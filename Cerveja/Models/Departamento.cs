@@ -6,7 +6,7 @@ namespace Cerveja.Models
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public ICollection<Vendedor> Vendedores { get; set; } = new List<Vendedor>();
+        //public ICollection<Vendedor> Vendedores { get; set; } = new List<Vendedor>();
 
 
         public Departamento()
@@ -18,7 +18,7 @@ namespace Cerveja.Models
             Nome = nome;
         }
 
-
+        /*
         public void AddVendedor(Vendedor vend)
         {
             this.Vendedores.Add(vend);
@@ -27,5 +27,6 @@ namespace Cerveja.Models
         {
             return this.Vendedores.Sum(v => v.TotalPedidos(inicio, final));
         }
+        */
     }
 }
