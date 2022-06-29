@@ -7,7 +7,7 @@
 <h2>@ViewData["Title"]</h2>
 
 <p>
-    <a asp-action="Create" class="btn btn-light">Criar Novo</a>
+    <a asp-action="Create" class="btn btn-light">Criar Novo</a> <!--//todo: falta implementar-->
 </p>
 
 <table class="table">
@@ -53,9 +53,11 @@
 
                 <!-- Botões -->
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> <!--//todo: falta implementar-->
-                    <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> <!--//todo: falta implementar-->
-                    <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a> <!--//todo: falta implementar-->
+                    <!-- //todo: poderia ser implementado
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+                    -->
                 </td>
             </tr>
         }
