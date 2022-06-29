@@ -17,5 +17,11 @@ namespace Cerveja.Controllers
             var list = _pedidoService.FindAll();
             return View(list);
         }
+
+        //---------------------------------------------------------------------------------------------
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
