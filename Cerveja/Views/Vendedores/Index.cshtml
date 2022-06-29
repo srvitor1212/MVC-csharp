@@ -4,10 +4,10 @@
     ViewData["Title"] = "Vendedores";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h1>@ViewData["Title"]</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-light">Criar Novo</a>
+    <a asp-action="Create" class="btn btn-primary">Criar Novo</a>
 </p>
 
 <table class="table">
@@ -48,8 +48,8 @@
 
                 <!-- Botões -->
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a>
-                    <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
                 </td>
             </tr>

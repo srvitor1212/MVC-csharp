@@ -1,12 +1,12 @@
 ﻿@model Cerveja.Models.ViewModels.VendedorFormViewModel
 
 @{
+    ViewData["Entidade"] = "Vendedor";
     ViewData["Title"] = "Editar";
 }
+<h1>@ViewData["Entidade"]</h1>
+<h2>@ViewData["Title"]</h2>
 
-<h1>@ViewData["Title"]</h1>
-
-<h4>Departamento</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -37,14 +37,11 @@
 
             <!-- Botões -->
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" /> |
+                <a asp-action="Index">Voltar</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Voltar</a>
 </div>
 
 @section Scripts {
