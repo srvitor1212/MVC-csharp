@@ -1,4 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<Cerveja.Data.CervejaContext>(options =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("CervejaContext");
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+});
 
 // Add services to the container.
 
