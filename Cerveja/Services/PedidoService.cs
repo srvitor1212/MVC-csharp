@@ -1,4 +1,5 @@
-﻿using Cerveja.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Cerveja.Models;
 using Cerveja.Data;
 
 namespace Cerveja.Services
@@ -14,12 +15,8 @@ namespace Cerveja.Services
 
         public List<Pedido> FindAll()
         {
-            var pedidos = _context.Pedido.ToList();
-            foreach (var pedido in pedidos)
-            {
-                var vend = _context.Vendedor.Find(pedido.VendedorId);
-                pedido.Vendedor = vend;
-            }
+            var pedidos = _context.Pedido.Include(x => x.Vendedor).ToList();
+
             return pedidos;
         }
     }
