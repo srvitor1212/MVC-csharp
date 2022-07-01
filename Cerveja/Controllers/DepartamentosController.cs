@@ -1,7 +1,5 @@
 ﻿using Cerveja.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Cerveja.Data;
 using Cerveja.Models;
 
 namespace Cerveja.Controllers

@@ -3,46 +3,46 @@ using Cerveja.Data;
 
 namespace Cerveja.Services
 {
-    public class DepartamentoService
+    public class RotuloService
     {
         private readonly CervejaContext _context;
 
-        public DepartamentoService(CervejaContext context)
+        public RotuloService(CervejaContext context)
         {
             _context = context;
         }
 
         //---------------------------------------------------------------------------------------------------------
-        public List<Departamento> FindAll()
+        public List<Rotulo> FindAll()
         {
-            return _context.Departamento.OrderBy(x => x.Nome).ToList();     //Ordenar por nome
+            return _context.Rotulo.OrderBy(x => x.Nome).ToList();     //Ordenar por nome
         }
 
         //---------------------------------------------------------------------------------------------------------
-        public void Insert(Departamento dep)
+        public void Insert(Rotulo obj)
         {
-            _context.Add(dep);
+            _context.Add(obj);
             _context.SaveChanges();
         }
 
         //---------------------------------------------------------------------------------------------------------
-        public Departamento FindById(int id)
+        public Rotulo FindById(int id)
         {
-            return _context.Departamento.Find(id);
+            return _context.Rotulo.Find(id);
         }
 
         //---------------------------------------------------------------------------------------------------------
-        public void Update(Departamento dep)
+        public void Update(Rotulo obj)
         {
-            _context.Departamento.Update(dep);
+            _context.Rotulo.Update(obj);
             _context.SaveChanges();
         }
 
         //---------------------------------------------------------------------------------------------------------
         public void Remove(int id)
         {
-            var obj = _context.Departamento.Find(id);
-            _context.Departamento.Remove(obj);
+            var obj = _context.Rotulo.Find(id);
+            _context.Rotulo.Remove(obj);
             _context.SaveChanges();
         }
     }
