@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Cerveja.Models.ViewModels;
+﻿using Cerveja.Models.ViewModels;
 using Cerveja.Models;
 using Cerveja.Services;
 using Microsoft.AspNetCore.Mvc;
