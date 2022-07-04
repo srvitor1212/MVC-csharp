@@ -13,10 +13,16 @@ namespace ApiCerveja.Services
             _context = context;
         }
 
-
+        //-------------------------------------------------------------------------------------
         public List<Departamento> FindAll()
         {
             return _context.Departamento.ToList();
+        }
+
+        //-------------------------------------------------------------------------------------
+        public Departamento FindById(int id)
+        {
+            return _context.Departamento.Find(id);
         }
     }
 }

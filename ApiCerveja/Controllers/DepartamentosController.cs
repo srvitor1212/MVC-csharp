@@ -32,18 +32,7 @@ namespace ApiCerveja.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Departamento>> GetDepartamento(int id)
         {
-          if (_context.Departamento == null)
-          {
-              return NotFound();
-          }
-            var departamento = await _context.Departamento.FindAsync(id);
-
-            if (departamento == null)
-            {
-                return NotFound();
-            }
-
-            return departamento;
+            return _departamentoService.FindById(id);
         }
 
         // PUT: api/Departamentos/5
