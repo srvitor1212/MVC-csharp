@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using ApiCerveja.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Cerveja.Data;
@@ -15,23 +11,23 @@ namespace ApiCerveja.Controllers
     public class DepartamentosController : ControllerBase
     {
         private readonly CervejaContext _context;
+        private readonly DepartamentoService _departamentoService;
 
-        public DepartamentosController(CervejaContext context)
+        public DepartamentosController(CervejaContext context, DepartamentoService departamentoService)
         {
             _context = context;
+            _departamentoService = departamentoService;
         }
 
+        //------------------------------------------------------------------------------------------------------
         // GET: api/Departamentos
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Departamento>>> GetDepartamento()
         {
-          if (_context.Departamento == null)
-          {
-              return NotFound();
-          }
-            return await _context.Departamento.ToListAsync();
+            return _departamentoService.FindAll();
         }
 
+        //------------------------------------------------------------------------------------------------------
         // GET: api/Departamentos/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Departamento>> GetDepartamento(int id)
