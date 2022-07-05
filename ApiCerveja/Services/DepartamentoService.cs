@@ -28,9 +28,14 @@ namespace ApiCerveja.Services
         //-------------------------------------------------------------------------------------
         public string Update(int id, Departamento dep)
         {
+            if (!DepartamentoExists(id))
+                return "Erro";
+
             _context.Entry(dep).State = EntityState.Modified;
             try
-            { _context.SaveChanges(); } 
+            { 
+                _context.SaveChanges();
+            } 
             catch (Exception E)
             {
                 var err = Convert.ToString(E);

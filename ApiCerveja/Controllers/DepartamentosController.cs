@@ -41,7 +41,7 @@ namespace ApiCerveja.Controllers
         public async Task<IActionResult> PutDepartamento(int id, Departamento departamento)
         {
             if (id != departamento.Id)
-                return BadRequest();
+                return Problem("ID no parâmetro não confere com ID do Body!");
 
             string ret =_departamentoService.Update(id, departamento);
 
@@ -53,7 +53,6 @@ namespace ApiCerveja.Controllers
 
         //------------------------------------------------------------------------------------------------------
         // POST: api/Departamentos
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Departamento>> PostDepartamento(Departamento departamento)
         {
