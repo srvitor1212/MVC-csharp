@@ -1,6 +1,5 @@
 ﻿using ApiCerveja.Services;
 using Microsoft.AspNetCore.Mvc;
-using Cerveja.Data;
 using Cerveja.Models;
 
 namespace ApiCerveja.Controllers
@@ -9,12 +8,11 @@ namespace ApiCerveja.Controllers
     [ApiController]
     public class DepartamentosController : ControllerBase
     {
-        private readonly CervejaContext _context;
+
         private readonly DepartamentoService _departamentoService;
 
-        public DepartamentosController(CervejaContext context, DepartamentoService departamentoService)
+        public DepartamentosController(DepartamentoService departamentoService)
         {
-            _context = context;
             _departamentoService = departamentoService;
         }
 
