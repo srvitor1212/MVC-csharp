@@ -1,6 +1,5 @@
 ﻿using ApiCerveja.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Cerveja.Data;
 using Cerveja.Models;
 
@@ -71,25 +70,14 @@ namespace ApiCerveja.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDepartamento(int id)
         {
-            if (_context.Departamento == null)
-            {
+            var dep = _departamentoService.FindById(id);
+            if (dep == null)
                 return NotFound();
-            }
-            var departamento = await _context.Departamento.FindAsync(id);
-            if (departamento == null)
-            {
-                return NotFound();
-            }
 
-            _context.Departamento.Remove(departamento);
-            await _context.SaveChangesAsync();
-
+            _departamentoService.Remove(dep);
+            
+            
             return NoContent();
-        }
-
-        private bool DepartamentoExists(int id)
-        {
-            return (_context.Departamento?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
