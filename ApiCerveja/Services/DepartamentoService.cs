@@ -43,6 +43,15 @@ namespace ApiCerveja.Services
             }
 
             return "Ok";
+        
+        
+        }
+
+        //-------------------------------------------------------------------------------------
+        public void Create(Departamento dep)
+        {
+            _context.Departamento.Add(dep);
+            _context.SaveChanges();
         }
 
         //-------------------------------------------------------------------------------------

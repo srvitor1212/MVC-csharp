@@ -56,16 +56,17 @@ namespace ApiCerveja.Controllers
         [HttpPost]
         public async Task<ActionResult<Departamento>> PostDepartamento(Departamento departamento)
         {
-          if (_context.Departamento == null)
-          {
-              return Problem("Entity set 'CervejaContext.Departamento'  is null.");
-          }
-            _context.Departamento.Add(departamento);
-            await _context.SaveChangesAsync();
+            var ret = _departamentoService.FindById(departamento.Id);
+            if (ret != null)
+                return Problem("Este departamento já existe!");
 
+            _departamentoService.Create(departamento);
+            
+            
             return CreatedAtAction("GetDepartamento", new { id = departamento.Id }, departamento);
         }
 
+        //------------------------------------------------------------------------------------------------------
         // DELETE: api/Departamentos/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDepartamento(int id)
