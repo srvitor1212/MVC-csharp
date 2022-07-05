@@ -24,5 +24,26 @@ namespace ApiCerveja.Services
         {
             return _context.Departamento.Find(id);
         }
+
+        //-------------------------------------------------------------------------------------
+        public string Update(int id, Departamento dep)
+        {
+            _context.Entry(dep).State = EntityState.Modified;
+            try
+            { _context.SaveChanges(); } 
+            catch (Exception E)
+            {
+                var err = Convert.ToString(E);
+                return err;
+            }
+
+            return "Ok";
+        }
+
+        //-------------------------------------------------------------------------------------
+        private bool DepartamentoExists(int id)
+        {
+            return (_context.Departamento?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
     }
 }

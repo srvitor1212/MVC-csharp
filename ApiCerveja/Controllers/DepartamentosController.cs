@@ -35,37 +35,23 @@ namespace ApiCerveja.Controllers
             return _departamentoService.FindById(id);
         }
 
+        //------------------------------------------------------------------------------------------------------
         // PUT: api/Departamentos/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDepartamento(int id, Departamento departamento)
         {
             if (id != departamento.Id)
-            {
                 return BadRequest();
-            }
 
-            _context.Entry(departamento).State = EntityState.Modified;
+            string ret =_departamentoService.Update(id, departamento);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DepartamentoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            if (ret != "Ok")
+                return BadRequest();
+            else
+                return NoContent();
         }
 
+        //------------------------------------------------------------------------------------------------------
         // POST: api/Departamentos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
