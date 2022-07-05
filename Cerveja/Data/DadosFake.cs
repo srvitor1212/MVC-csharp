@@ -52,31 +52,31 @@ namespace Cerveja.Data
             Rotulo r5 = new Rotulo(5, "Brahma Duplo Malte");
 
             //Relação PEDIDO PRODUTO
-            PedidoProduto p1p1 = new PedidoProduto(1, p1, r1);
-            PedidoProduto p1p2 = new PedidoProduto(2, p1, r3);
-            PedidoProduto p1p3 = new PedidoProduto(3, p1, r4);
+            PedidoProduto p1p1 = new PedidoProduto(1, p1, r1, 2);
+            PedidoProduto p1p2 = new PedidoProduto(2, p1, r3, 1);
+            PedidoProduto p1p3 = new PedidoProduto(3, p1, r4, 3);
 
-            PedidoProduto p2p1 = new PedidoProduto(4, p2, r1);
-            PedidoProduto p2p2 = new PedidoProduto(5, p2, r5);
+            PedidoProduto p2p1 = new PedidoProduto(4, p2, r1, 5);
+            PedidoProduto p2p2 = new PedidoProduto(5, p2, r5, 1);
 
-            PedidoProduto p3p1 = new PedidoProduto(6, p3, r2);
+            PedidoProduto p3p1 = new PedidoProduto(6, p3, r2, 2);
 
-            PedidoProduto p4p1 = new PedidoProduto(7, p4, r3);
+            PedidoProduto p4p1 = new PedidoProduto(7, p4, r3, 4);
 
-            PedidoProduto p5p1 = new PedidoProduto(8, p5, r2);
-            PedidoProduto p5p2 = new PedidoProduto(9, p5, r4);
-            PedidoProduto p5p3 = new PedidoProduto(10, p5, r5);
+            PedidoProduto p5p1 = new PedidoProduto(8, p5, r2, 6);
+            PedidoProduto p5p2 = new PedidoProduto(9, p5, r4, 7);
+            PedidoProduto p5p3 = new PedidoProduto(10, p5, r5, 12);
 
-            PedidoProduto p6p1 = new PedidoProduto(11, p6, r4);
+            PedidoProduto p6p1 = new PedidoProduto(11, p6, r4, 40);
 
-            PedidoProduto p7p1 = new PedidoProduto(12, p7, r5);
+            PedidoProduto p7p1 = new PedidoProduto(12, p7, r5, 60);
 
-            PedidoProduto p8p1 = new PedidoProduto(13, p8, r5);
+            PedidoProduto p8p1 = new PedidoProduto(13, p8, r5, 20);
 
-            PedidoProduto p9p1 = new PedidoProduto(14, p9, r3);
-            PedidoProduto p9p2 = new PedidoProduto(15, p9, r4);
+            PedidoProduto p9p1 = new PedidoProduto(14, p9, r3, 30);
+            PedidoProduto p9p2 = new PedidoProduto(15, p9, r4, 40);
 
-            PedidoProduto p10p1 = new PedidoProduto(16, p10, r2);
+            PedidoProduto p10p1 = new PedidoProduto(16, p10, r2, 23);
 
 
             _context.Departamento.AddRange(d1, d2, d3);
