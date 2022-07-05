@@ -1,4 +1,5 @@
-﻿using Cerveja.Services;
+﻿using Cerveja.Models.ViewModels;
+using Cerveja.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cerveja.Controllers
@@ -6,9 +7,11 @@ namespace Cerveja.Controllers
     public class PedidosController : Controller
     {
         private readonly PedidoService _pedidoService;
-        public PedidosController(PedidoService pedidoService)
+        private readonly VendedorService _vendedorService;
+        public PedidosController(PedidoService pedidoService, VendedorService vendedorService)
         {
             this._pedidoService = pedidoService;
+            this._vendedorService = vendedorService;
         }
 
         //---------------------------------------------------------------------------------------------
@@ -21,7 +24,9 @@ namespace Cerveja.Controllers
         //---------------------------------------------------------------------------------------------
         public IActionResult Create()
         {
-            return View();
+            var vendedores = _vendedorService.FindAll();
+            var viewModel = new PedidoFormViewModel { Vendedor = vendedores };
+            return View(viewModel);
         }
     }
 }
