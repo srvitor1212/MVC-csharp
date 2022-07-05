@@ -17,6 +17,7 @@ namespace Cerveja.Data
             if (_context.Departamento.Any() ||
                 _context.Pedido.Any() ||
                 _context.Rotulo.Any() ||
+                _context.PedidoProdutos.Any() ||
                 _context.Vendedor.Any())
             {
                 return; // O banco já tem dados, não faz nada
@@ -50,10 +51,39 @@ namespace Cerveja.Data
             Rotulo r4 = new Rotulo(4, "Budweiser Lata");
             Rotulo r5 = new Rotulo(5, "Brahma Duplo Malte");
 
+            //Relação PEDIDO PRODUTO
+            PedidoProduto p1p1 = new PedidoProduto(1, p1, r1);
+            PedidoProduto p1p2 = new PedidoProduto(2, p1, r3);
+            PedidoProduto p1p3 = new PedidoProduto(3, p1, r4);
+
+            PedidoProduto p2p1 = new PedidoProduto(4, p2, r1);
+            PedidoProduto p2p2 = new PedidoProduto(5, p2, r5);
+
+            PedidoProduto p3p1 = new PedidoProduto(6, p3, r2);
+
+            PedidoProduto p4p1 = new PedidoProduto(7, p4, r3);
+
+            PedidoProduto p5p1 = new PedidoProduto(8, p5, r2);
+            PedidoProduto p5p2 = new PedidoProduto(9, p5, r4);
+            PedidoProduto p5p3 = new PedidoProduto(10, p5, r5);
+
+            PedidoProduto p6p1 = new PedidoProduto(11, p6, r4);
+
+            PedidoProduto p7p1 = new PedidoProduto(12, p7, r5);
+
+            PedidoProduto p8p1 = new PedidoProduto(13, p8, r5);
+
+            PedidoProduto p9p1 = new PedidoProduto(14, p9, r3);
+            PedidoProduto p9p2 = new PedidoProduto(15, p9, r4);
+
+            PedidoProduto p10p1 = new PedidoProduto(16, p10, r2);
+
+
             _context.Departamento.AddRange(d1, d2, d3);
             _context.Vendedor.AddRange(v1, v2, v3, v4, v5, v6);
             _context.Pedido.AddRange(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
             _context.Rotulo.AddRange(r1, r2, r3, r4, r5);
+            _context.PedidoProdutos.AddRange(p1p1, p1p2, p1p3, p2p1, p2p2, p3p1, p4p1, p5p1, p5p2, p5p3, p6p1, p7p1, p8p1, p9p1, p9p2, p10p1);
 
 
             _context.SaveChanges();
