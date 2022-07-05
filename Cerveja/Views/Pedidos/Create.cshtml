@@ -21,6 +21,33 @@
                 <input asp-for="Pedido.Valor" class="form-control" />
             </div>
 
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Rótulos
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model.Rotulos)
+                {
+                    <input type="hidden" asp-for="@item.Id" />
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+
+                        <!-- Botões -->
+                        <td>
+                            <a asp-action="AddRotulo" asp-route-id="@item.Id">Adicionar</a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+
             <!-- Botões -->
             <div class="form-text">
                 <input type="submit" value="Criar" class="btn btn-primary" /> |

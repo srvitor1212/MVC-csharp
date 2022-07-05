@@ -8,10 +8,14 @@ namespace Cerveja.Controllers
     {
         private readonly PedidoService _pedidoService;
         private readonly VendedorService _vendedorService;
-        public PedidosController(PedidoService pedidoService, VendedorService vendedorService)
+        private readonly RotuloService _rotuloService;
+        public PedidosController(   PedidoService pedidoService, 
+                                    VendedorService vendedorService,
+                                    RotuloService rotuloService)
         {
             this._pedidoService = pedidoService;
             this._vendedorService = vendedorService;
+            this._rotuloService = rotuloService;
         }
 
         //---------------------------------------------------------------------------------------------
@@ -25,7 +29,8 @@ namespace Cerveja.Controllers
         public IActionResult Create()
         {
             var vendedores = _vendedorService.FindAll();
-            var viewModel = new PedidoFormViewModel { Vendedor = vendedores };
+            var rotulos = _rotuloService.FindAll();
+            var viewModel = new PedidoFormViewModel { Vendedor = vendedores, Rotulos = rotulos };
             return View(viewModel);
         }
     }
