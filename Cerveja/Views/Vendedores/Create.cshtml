@@ -1,36 +1,37 @@
 ﻿@model Cerveja.Models.ViewModels.VendedorFormViewModel
 
 @{
+    ViewData["Entidade"] = "Vendedor";
     ViewData["Title"] = "Criar Novo";
 }
-
+<h1>@ViewData["Entidade"]</h1>
 <h2>@ViewData["Title"]</h2>
 <hr />
 
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create"> <!--Método POST-->
-            <div class="form-text">
-                <label asp-for="Vendedor.Nome" class="form-label"></label>
-                <input asp-for="Vendedor.Nome" class="form-text" />
+            <div class="form-group">
+                <label asp-for="Vendedor.Nome" class="control-label"></label>
+                <input asp-for="Vendedor.Nome" class="form-control" />
             </div>
-            <div class="form-text">
-                <label asp-for="Vendedor.DataNascimento" class="form-label"></label>
-                <input asp-for="Vendedor.DataNascimento" class="form-text" />
+            <div class="form-group">
+                <label asp-for="Vendedor.DataNascimento" class="control-label"></label>
+                <input asp-for="Vendedor.DataNascimento" class="form-control" />
             </div>
-            <div class="form-text">
-                <label asp-for="Vendedor.Salario" class="form-label"></label>
-                <input asp-for="Vendedor.Salario" class="form-text" />
+            <div class="form-group">
+                <label asp-for="Vendedor.Salario" class="control-label"></label>
+                <input asp-for="Vendedor.Salario" class="form-control" />
             </div>
-            <div class="form-text">
-                <label asp-for="Vendedor.Departamento.Id" class="form-label"></label>
-                <select asp-for="Vendedor.Departamento.Id" asp-items="@(new SelectList(Model.Departamentos,"Id","Nome"))" class="form-text"></select>
+            <div class="form-group">
+                <label class="control-label">Departamento</label>
+                <select asp-for="Vendedor.Departamento.Id" asp-items="@(new SelectList(Model.Departamentos,"Id","Nome"))" class="form-control"></select>
             </div>
-
 
             <!-- Botões -->
             <div class="form-text">
-                <input type="submit" value="Criar" class="btn-success" />
+                <input type="submit" value="Criar" class="btn btn-primary" /> |
+                <a asp-action="Index">Voltar</a>
             </div>
         </form>
     </div>

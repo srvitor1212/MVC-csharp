@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Cerveja.Data;
 using Cerveja.Services;
 
@@ -21,7 +20,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<VendedorService>();
 builder.Services.AddScoped<DepartamentoService>();
 builder.Services.AddScoped<PedidoService>();
+builder.Services.AddScoped<RotuloService>();
+builder.Services.AddScoped<HomeService>();
 builder.Services.AddScoped<DadosFake>();        //todo: Usar o Seed Migration, exemplo do chrys
+//DadosFake d = new DadosFake();
 
 var app = builder.Build();
 

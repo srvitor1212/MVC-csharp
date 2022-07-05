@@ -1,14 +1,14 @@
 ﻿@model Cerveja.Models.Vendedor
 
 @{
+    ViewData["Entidade"] = "Vendedor";
     ViewData["Title"] = "Detalhes";
 }
-
+<h1>@ViewData["Entidade"]</h1>
 <h2>@ViewData["Title"]</h2>
+<hr />
 
 <div>
-    <h4>Vendedor</h4>
-    <hr />
     <dl>
         <dt>
             @Html.DisplayNameFor(model => model.Nome)
@@ -35,6 +35,9 @@
         </dd>
 
         <!-- Botões -->
-        <a asp-action="Index" class="btn-light">Voltar</a>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model?.Id">Editar</a> |
+            <a asp-action="Index">Voltar</a>
+        </div>
     </dl>
 </div>

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using ApiCerveja.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Cerveja.Data;
 using Cerveja.Models;
 
@@ -15,110 +10,74 @@ namespace ApiCerveja.Controllers
     public class DepartamentosController : ControllerBase
     {
         private readonly CervejaContext _context;
+        private readonly DepartamentoService _departamentoService;
 
-        public DepartamentosController(CervejaContext context)
+        public DepartamentosController(CervejaContext context, DepartamentoService departamentoService)
         {
             _context = context;
+            _departamentoService = departamentoService;
         }
 
+        //------------------------------------------------------------------------------------------------------
         // GET: api/Departamentos
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Departamento>>> GetDepartamento()
         {
-          if (_context.Departamento == null)
-          {
-              return NotFound();
-          }
-            return await _context.Departamento.ToListAsync();
+            return _departamentoService.FindAll();
         }
 
+        //------------------------------------------------------------------------------------------------------
         // GET: api/Departamentos/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Departamento>> GetDepartamento(int id)
         {
-          if (_context.Departamento == null)
-          {
-              return NotFound();
-          }
-            var departamento = await _context.Departamento.FindAsync(id);
-
-            if (departamento == null)
-            {
-                return NotFound();
-            }
-
-            return departamento;
+            return _departamentoService.FindById(id);
         }
 
+        //------------------------------------------------------------------------------------------------------
         // PUT: api/Departamentos/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDepartamento(int id, Departamento departamento)
         {
             if (id != departamento.Id)
-            {
+                return Problem("ID no parâmetro não confere com ID do Body!");
+
+            string ret =_departamentoService.Update(id, departamento);
+
+            if (ret != "Ok")
                 return BadRequest();
-            }
-
-            _context.Entry(departamento).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DepartamentoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            else
+                return NoContent();
         }
 
+        //------------------------------------------------------------------------------------------------------
         // POST: api/Departamentos
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Departamento>> PostDepartamento(Departamento departamento)
         {
-          if (_context.Departamento == null)
-          {
-              return Problem("Entity set 'CervejaContext.Departamento'  is null.");
-          }
-            _context.Departamento.Add(departamento);
-            await _context.SaveChangesAsync();
+            var ret = _departamentoService.FindById(departamento.Id);
+            if (ret != null)
+                return Problem("Este departamento já existe!");
 
+            _departamentoService.Create(departamento);
+            
+            
             return CreatedAtAction("GetDepartamento", new { id = departamento.Id }, departamento);
         }
 
+        //------------------------------------------------------------------------------------------------------
         // DELETE: api/Departamentos/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDepartamento(int id)
         {
-            if (_context.Departamento == null)
-            {
+            var dep = _departamentoService.FindById(id);
+            if (dep == null)
                 return NotFound();
-            }
-            var departamento = await _context.Departamento.FindAsync(id);
-            if (departamento == null)
-            {
-                return NotFound();
-            }
 
-            _context.Departamento.Remove(departamento);
-            await _context.SaveChangesAsync();
-
+            _departamentoService.Remove(dep);
+            
+            
             return NoContent();
-        }
-
-        private bool DepartamentoExists(int id)
-        {
-            return (_context.Departamento?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

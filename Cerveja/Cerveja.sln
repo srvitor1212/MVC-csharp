@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cerveja", "Cerveja.csproj", "{0DACDFA5-FC8D-4DAB-8FDF-554115DC06C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiCerveja", "..\ApiCerveja\ApiCerveja.csproj", "{A015775B-025D-41AE-B103-D2E0CF79F609}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiCerveja", "..\ApiCerveja\ApiCerveja.csproj", "{A015775B-025D-41AE-B103-D2E0CF79F609}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
