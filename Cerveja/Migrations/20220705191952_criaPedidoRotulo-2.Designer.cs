@@ -3,6 +3,7 @@ using System;
 using Cerveja.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cerveja.Migrations
 {
     [DbContext(typeof(CervejaContext))]
-    partial class CervejaContextModelSnapshot : ModelSnapshot
+    [Migration("20220705191952_criaPedidoRotulo-2")]
+    partial class criaPedidoRotulo2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

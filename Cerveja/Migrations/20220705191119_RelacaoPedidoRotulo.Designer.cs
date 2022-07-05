@@ -3,6 +3,7 @@ using System;
 using Cerveja.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cerveja.Migrations
 {
     [DbContext(typeof(CervejaContext))]
-    partial class CervejaContextModelSnapshot : ModelSnapshot
+    [Migration("20220705191119_RelacaoPedidoRotulo")]
+    partial class RelacaoPedidoRotulo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,27 +59,6 @@ namespace Cerveja.Migrations
                     b.HasIndex("VendedorId");
 
                     b.ToTable("Pedido");
-                });
-
-            modelBuilder.Entity("Cerveja.Models.PedidoProduto", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("PedidoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RotuloId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PedidoId");
-
-                    b.HasIndex("RotuloId");
-
-                    b.ToTable("PedidoProdutos");
                 });
 
             modelBuilder.Entity("Cerveja.Models.Rotulo", b =>
@@ -135,25 +116,6 @@ namespace Cerveja.Migrations
                         .IsRequired();
 
                     b.Navigation("Vendedor");
-                });
-
-            modelBuilder.Entity("Cerveja.Models.PedidoProduto", b =>
-                {
-                    b.HasOne("Cerveja.Models.Pedido", "Pedido")
-                        .WithMany()
-                        .HasForeignKey("PedidoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Cerveja.Models.Rotulo", "Rotulo")
-                        .WithMany()
-                        .HasForeignKey("RotuloId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Pedido");
-
-                    b.Navigation("Rotulo");
                 });
 
             modelBuilder.Entity("Cerveja.Models.Rotulo", b =>
