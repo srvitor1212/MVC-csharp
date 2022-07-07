@@ -32,7 +32,7 @@
             <!-- Departamentos -->
             <div class="form-group">
                 <label class="control-label">Departamento</label>
-                <select asp-for="Vendedor.Departamento.Id" asp-items="@(new SelectList(Model.Departamentos,"Id","Nome"))" class="form-control"></select>
+                <select asp-for="Vendedor.Departamento.Id" asp-items="@(new SelectList(Model.Departamentos,"Id","Nome"))" class="form-select"></select>
             </div>
 
             <!-- Botões -->

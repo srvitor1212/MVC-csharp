@@ -59,6 +59,30 @@ namespace Cerveja.Migrations
                     b.ToTable("Pedido");
                 });
 
+            modelBuilder.Entity("Cerveja.Models.PedidoRotulos", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("PedidoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RotuloId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PedidoId");
+
+                    b.HasIndex("RotuloId");
+
+                    b.ToTable("PedidoRotulos");
+                });
+
             modelBuilder.Entity("Cerveja.Models.Rotulo", b =>
                 {
                     b.Property<int>("Id")
@@ -69,12 +93,7 @@ namespace Cerveja.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("PedidoId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PedidoId");
 
                     b.ToTable("Rotulo");
                 });
@@ -108,7 +127,7 @@ namespace Cerveja.Migrations
             modelBuilder.Entity("Cerveja.Models.Pedido", b =>
                 {
                     b.HasOne("Cerveja.Models.Vendedor", "Vendedor")
-                        .WithMany("Pedidos")
+                        .WithMany()
                         .HasForeignKey("VendedorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -116,37 +135,34 @@ namespace Cerveja.Migrations
                     b.Navigation("Vendedor");
                 });
 
-            modelBuilder.Entity("Cerveja.Models.Rotulo", b =>
+            modelBuilder.Entity("Cerveja.Models.PedidoRotulos", b =>
                 {
-                    b.HasOne("Cerveja.Models.Pedido", null)
-                        .WithMany("Rotulos")
-                        .HasForeignKey("PedidoId");
+                    b.HasOne("Cerveja.Models.Pedido", "Pedido")
+                        .WithMany()
+                        .HasForeignKey("PedidoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Cerveja.Models.Rotulo", "Rotulo")
+                        .WithMany()
+                        .HasForeignKey("RotuloId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pedido");
+
+                    b.Navigation("Rotulo");
                 });
 
             modelBuilder.Entity("Cerveja.Models.Vendedor", b =>
                 {
                     b.HasOne("Cerveja.Models.Departamento", "Departamento")
-                        .WithMany("Vendedores")
+                        .WithMany()
                         .HasForeignKey("DepartamentoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Departamento");
-                });
-
-            modelBuilder.Entity("Cerveja.Models.Departamento", b =>
-                {
-                    b.Navigation("Vendedores");
-                });
-
-            modelBuilder.Entity("Cerveja.Models.Pedido", b =>
-                {
-                    b.Navigation("Rotulos");
-                });
-
-            modelBuilder.Entity("Cerveja.Models.Vendedor", b =>
-                {
-                    b.Navigation("Pedidos");
                 });
 #pragma warning restore 612, 618
         }

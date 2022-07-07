@@ -6,20 +6,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Cerveja.Migrations
 {
-    public partial class NovasEntidades : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "Name",
-                table: "Rotulo",
-                newName: "Nome");
-
-            migrationBuilder.AddColumn<int>(
-                name: "PedidoId",
-                table: "Rotulo",
-                type: "int",
-                nullable: true);
+            migrationBuilder.AlterDatabase()
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "Departamento",
@@ -33,6 +25,21 @@ namespace Cerveja.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Departamento", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Rotulo",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nome = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rotulo", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -83,10 +90,33 @@ namespace Cerveja.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Rotulo_PedidoId",
-                table: "Rotulo",
-                column: "PedidoId");
+            migrationBuilder.CreateTable(
+                name: "PedidoRotulos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Quantidade = table.Column<int>(type: "int", nullable: false),
+                    PedidoId = table.Column<int>(type: "int", nullable: false),
+                    RotuloId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PedidoRotulos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PedidoRotulos_Pedido_PedidoId",
+                        column: x => x.PedidoId,
+                        principalTable: "Pedido",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PedidoRotulos_Rotulo_RotuloId",
+                        column: x => x.RotuloId,
+                        principalTable: "Rotulo",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pedido_VendedorId",
@@ -94,45 +124,37 @@ namespace Cerveja.Migrations
                 column: "VendedorId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PedidoRotulos_PedidoId",
+                table: "PedidoRotulos",
+                column: "PedidoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PedidoRotulos_RotuloId",
+                table: "PedidoRotulos",
+                column: "RotuloId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Vendedor_DepartamentoId",
                 table: "Vendedor",
                 column: "DepartamentoId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Rotulo_Pedido_PedidoId",
-                table: "Rotulo",
-                column: "PedidoId",
-                principalTable: "Pedido",
-                principalColumn: "Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Rotulo_Pedido_PedidoId",
-                table: "Rotulo");
+            migrationBuilder.DropTable(
+                name: "PedidoRotulos");
 
             migrationBuilder.DropTable(
                 name: "Pedido");
+
+            migrationBuilder.DropTable(
+                name: "Rotulo");
 
             migrationBuilder.DropTable(
                 name: "Vendedor");
 
             migrationBuilder.DropTable(
                 name: "Departamento");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Rotulo_PedidoId",
-                table: "Rotulo");
-
-            migrationBuilder.DropColumn(
-                name: "PedidoId",
-                table: "Rotulo");
-
-            migrationBuilder.RenameColumn(
-                name: "Nome",
-                table: "Rotulo",
-                newName: "Name");
         }
     }
 }

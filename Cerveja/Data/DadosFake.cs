@@ -17,6 +17,7 @@ namespace Cerveja.Data
             if (_context.Departamento.Any() ||
                 _context.Pedido.Any() ||
                 _context.Rotulo.Any() ||
+                _context.PedidoRotulos.Any() ||
                 _context.Vendedor.Any())
             {
                 return; // O banco já tem dados, não faz nada
@@ -50,10 +51,39 @@ namespace Cerveja.Data
             Rotulo r4 = new Rotulo(4, "Budweiser Lata");
             Rotulo r5 = new Rotulo(5, "Brahma Duplo Malte");
 
+            //Relação PEDIDO PRODUTO
+            PedidoRotulos p1p1 = new PedidoRotulos(1, p1, r1, 2);
+            PedidoRotulos p1p2 = new PedidoRotulos(2, p1, r3, 1);
+            PedidoRotulos p1p3 = new PedidoRotulos(3, p1, r4, 3);
+
+            PedidoRotulos p2p1 = new PedidoRotulos(4, p2, r1, 5);
+            PedidoRotulos p2p2 = new PedidoRotulos(5, p2, r5, 1);
+
+            PedidoRotulos p3p1 = new PedidoRotulos(6, p3, r2, 2);
+
+            PedidoRotulos p4p1 = new PedidoRotulos(7, p4, r3, 4);
+
+            PedidoRotulos p5p1 = new PedidoRotulos(8, p5, r2, 6);
+            PedidoRotulos p5p2 = new PedidoRotulos(9, p5, r4, 7);
+            PedidoRotulos p5p3 = new PedidoRotulos(10, p5, r5, 12);
+
+            PedidoRotulos p6p1 = new PedidoRotulos(11, p6, r4, 40);
+
+            PedidoRotulos p7p1 = new PedidoRotulos(12, p7, r5, 60);
+
+            PedidoRotulos p8p1 = new PedidoRotulos(13, p8, r5, 20);
+
+            PedidoRotulos p9p1 = new PedidoRotulos(14, p9, r3, 30);
+            PedidoRotulos p9p2 = new PedidoRotulos(15, p9, r4, 40);
+
+            PedidoRotulos p10p1 = new PedidoRotulos(16, p10, r2, 23);
+
+
             _context.Departamento.AddRange(d1, d2, d3);
             _context.Vendedor.AddRange(v1, v2, v3, v4, v5, v6);
             _context.Pedido.AddRange(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
             _context.Rotulo.AddRange(r1, r2, r3, r4, r5);
+            _context.PedidoRotulos.AddRange(p1p1, p1p2, p1p3, p2p1, p2p2, p3p1, p4p1, p5p1, p5p2, p5p3, p6p1, p7p1, p8p1, p9p1, p9p2, p10p1);
 
 
             _context.SaveChanges();
