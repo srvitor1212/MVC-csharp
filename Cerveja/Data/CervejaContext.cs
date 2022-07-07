@@ -18,6 +18,6 @@ namespace Cerveja.Data
         public DbSet<Vendedor> Vendedor { get; set; }
         public DbSet<Pedido> Pedido { get; set; }
         public DbSet<Departamento> Departamento { get; set; }
-        public DbSet<PedidoProduto> PedidoProdutos { get; set; }
+        public DbSet<PedidoRotulos> PedidoRotulos { get; set; }
     }
 }

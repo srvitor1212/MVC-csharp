@@ -29,10 +29,13 @@ namespace Cerveja.Controllers
         //---------------------------------------------------------------------------------------------
         public IActionResult Create()
         {
+            return View();
+            /*
             var vendedores = _vendedorService.FindAll();
             var rotulos = _rotuloService.FindAll();
             var viewModel = new PedidoFormViewModel { Vendedor = vendedores, Rotulos = rotulos };
             return View(viewModel);
+            */
         }
 
         [HttpPost]

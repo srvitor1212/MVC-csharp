@@ -8,9 +8,10 @@ namespace Cerveja.Models
         public DateTime Data { get; set; }
         public double Valor { get; set; }
         public StatusPedido Status { get; set; }
+        
+        // FK's
         public Vendedor Vendedor { get; set; }
         public int VendedorId { get; set; }
-        public ICollection<Rotulo> Rotulos { get; set; } = new List<Rotulo>();
 
 
         public Pedido()
@@ -23,12 +24,6 @@ namespace Cerveja.Models
             Valor = valor;
             Status = status;
             Vendedor = vendedor;
-        }
-
-
-        public void AddRotulo(Rotulo rot)
-        {
-            this.Rotulos.Add(rot); 
         }
     }
 }
