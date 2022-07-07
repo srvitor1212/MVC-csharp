@@ -1,4 +1,5 @@
-﻿using Cerveja.Models;
+﻿using Cerveja.Models.Enums;
+using Cerveja.Models;
 using Cerveja.Models.ViewModels;
 using Cerveja.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -38,9 +39,19 @@ namespace Cerveja.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(PedidoViewModel pedido)
+        public IActionResult Create(PedidoViewModel form)
         {
+            var vendedor = _vendedorService.FindById(form.VendedorId);
+            DateTime dtNow = DateTime.Now;
 
+            Pedido pedido = new Pedido( 
+                0,
+                dtNow,
+                form.Valor,
+                StatusPedido.Pendente,
+                vendedor);
+
+            _pedidoService.Insert(pedido);
 
             return RedirectToAction(nameof(Index));
         }
