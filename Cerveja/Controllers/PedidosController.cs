@@ -1,4 +1,5 @@
-﻿using Cerveja.Models.ViewModels;
+﻿using Cerveja.Models;
+using Cerveja.Models.ViewModels;
 using Cerveja.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,6 +33,15 @@ namespace Cerveja.Controllers
             var rotulos = _rotuloService.FindAll();
             var viewModel = new PedidoFormViewModel { Vendedor = vendedores, Rotulos = rotulos };
             return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Pedido pedido)
+        {
+
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
