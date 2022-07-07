@@ -29,18 +29,16 @@ namespace Cerveja.Controllers
         //---------------------------------------------------------------------------------------------
         public IActionResult Create()
         {
-            return View();
-            /*
             var vendedores = _vendedorService.FindAll();
-            var rotulos = _rotuloService.FindAll();
-            var viewModel = new PedidoFormViewModel { Vendedor = vendedores, Rotulos = rotulos };
+            var viewModel = new PedidoViewModel { Vendedor = vendedores};
+            
+            
             return View(viewModel);
-            */
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Pedido pedido)
+        public IActionResult Create(PedidoViewModel pedido)
         {
 
 
