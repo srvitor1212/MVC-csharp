@@ -1,21 +1,19 @@
-﻿using ApiCerveja.Services;
+﻿using ApiCerveja.DTO;
+using ApiCerveja.Services;
 using Microsoft.AspNetCore.Mvc;
-using Cerveja.Models;
 
 namespace ApiCerveja.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class PedidoController : ControllerBase
+    [Route("api/pedidos")]
+    public class PedidoController : MainController
     {
-
         private readonly PedidoService _pedidoService;
 
-        public PedidoController(PedidoService pedidoService)
+        public async Task<ActionResult<IEnumerable<PedidoDTO>>> BuscarTodos()
         {
-            _pedidoService = pedidoService;
-        }
+            var pedidos = _pedidoService.FindAll();
 
-        //------------------------------------------------------------------------------------------------------
+            return Ok(pedidos);
+        }
     }
 }

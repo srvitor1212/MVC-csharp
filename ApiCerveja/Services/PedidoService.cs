@@ -12,5 +12,12 @@ namespace ApiCerveja.Services
         {
             _context = context;
         }
+
+        public List<Pedido> FindAll()
+        {
+            var pedidos = _context.Pedido.Include(x => x.Vendedor).ToList();
+
+            return pedidos;
+        }
     }
 }
