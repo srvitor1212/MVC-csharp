@@ -8,8 +8,14 @@ namespace ApiCerveja.Controllers
     public class PedidoController : MainController
     {
         private readonly PedidoService _pedidoService;
+        public PedidoController(PedidoService pedidoService)
+        {
+            _pedidoService = pedidoService;
+        }
 
-        public async Task<ActionResult<IEnumerable<PedidoDTO>>> BuscarTodos()
+        //-------------------------------------------------------------------------------------------
+        [HttpGet]
+        public IActionResult BuscarTodos()
         {
             var pedidos = _pedidoService.FindAll();
 
