@@ -1,13 +1,21 @@
-﻿using Cerveja.Models.Enums;
+﻿using Cerveja.Models;
+using Cerveja.Models.Enums;
 
 namespace ApiCerveja.DTO
 {
     public class PedidoDTO
     {
-        public int Id { get; set; }
-        public DateTime Data { get; set; }
-        public double Valor { get; set; }
-        public StatusPedido Status { get; set; }
+        //Pedido
+        public int PedidoId { get; set; }
+        public DateTime PedidoData { get; set; }
+        public double PedidoValor { get; set; }
+        public StatusPedido PedidoStatus { get; set; }
+
+        //Vendedor
+        public string VendedorNome { get; set; }
+
+        //Itens pedidos
+        public List<Rotulo> Rotulos = new List<Rotulo>();
 
         // FK's
         //public Vendedor Vendedor { get; set; }
