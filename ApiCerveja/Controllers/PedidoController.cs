@@ -4,20 +4,33 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ApiCerveja.Controllers
 {
-    [Route("api/pedidos")]
     public class PedidoController : MainController
     {
         private readonly PedidoService _pedidoService;
-        public PedidoController(PedidoService pedidoService)
+        private readonly PedidoERotuloService _pedidoERotuloService;
+        public PedidoController(PedidoService pedidoService, PedidoERotuloService pedidoERotuloService)
         {
             _pedidoService = pedidoService;
+            _pedidoERotuloService = pedidoERotuloService;
         }
 
         //-------------------------------------------------------------------------------------------
         [HttpGet]
-        public IActionResult BuscarTodos()
+        [Route("api/BuscarTodos")]
+        public async Task<ActionResult<IEnumerable<PedidoDTO>>> BuscarTodos()
         {
             var pedidos = _pedidoService.FindAll();
+
+            return Ok(pedidos);
+        }
+
+        //-------------------------------------------------------------------------------------------
+        [HttpGet]
+        [Route("api/BuscarTodosCompleto")]
+        public async Task<ActionResult<IEnumerable<PedidoDTO>>> BuscarTodosCompleto()
+        {
+            var pedidos = _pedidoService.FindAllComplete();
+            var pedidoERotulo = _pedidoERotuloService.FindAll();
 
             return Ok(pedidos);
         }
