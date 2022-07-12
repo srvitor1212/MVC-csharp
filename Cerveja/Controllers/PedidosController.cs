@@ -42,16 +42,18 @@ namespace Cerveja.Controllers
         public IActionResult Create(PedidoViewModel form)
         {
             var vendedor = _vendedorService.FindById(form.VendedorId);
+            var rotulo = _rotuloService.FindById(form.RotuloId);
+
+            if (vendedor == null)
+                return Problem("Vendedor inválido!");
+
+            if (rotulo == null)
+                return Problem("Rótulo inválido!");
+
             DateTime dtNow = DateTime.Now;
+            Pedido pedido = new Pedido(0, dtNow, form.Valor, StatusPedido.Pendente, vendedor);
+            _pedidoService.Insert(pedido, rotulo, form.Quantidade);
 
-            Pedido pedido = new Pedido( 
-                0,
-                dtNow,
-                form.Valor,
-                StatusPedido.Pendente,
-                vendedor);
-
-            _pedidoService.Insert(pedido);
 
             return RedirectToAction(nameof(Index));
         }

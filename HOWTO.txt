@@ -10,7 +10,8 @@ Padrão MVC
 Entity Framework (ORM ou Object Relational Mapping é uma técnica de mapeamento objeto
  relacional que visa criar uma camada de mapeamento entre nosso modelo de objetos 
  (aplicação) e nosso modelo relacional (banco de dados) de forma a abstrair o acesso ao mesmo.)
-
+ 
+DTO = Data Transfer Object
 
  1- Instalar MySql (MySQL Community Server): https://www.mysql.com/downloads/
     Porta padrão: 3306 | X protocol port: 33060

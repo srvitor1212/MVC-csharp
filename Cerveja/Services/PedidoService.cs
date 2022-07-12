@@ -22,9 +22,13 @@ namespace Cerveja.Services
         }
 
         //---------------------------------------------------------------------------------
-        public void Insert(Pedido pedido)
+        public void Insert(Pedido pedido, Rotulo rotulo, int qtd)
         {
             _context.Pedido.Add(pedido);
+            _context.SaveChanges();
+
+            PedidoRotulos vinculo = new PedidoRotulos(0, pedido, rotulo, qtd);
+            _context.PedidoRotulos.Add(vinculo);
             _context.SaveChanges();
         }
     }

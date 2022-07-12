@@ -20,6 +20,10 @@ builder.Services.AddSwaggerGen();
 
 //Meus
 builder.Services.AddScoped<DepartamentoService>();
+builder.Services.AddScoped<PedidoService>();
+builder.Services.AddScoped<PedidoERotuloService>();
+builder.Services.AddScoped<RotuloService>();
+
 
 var app = builder.Build();
 
