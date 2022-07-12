@@ -3,7 +3,7 @@ using Cerveja.Models.Enums;
 
 namespace ApiCerveja.DTO
 {
-    public class PedidoDTO
+    public class PedidoCompleto
     {
         //Pedido
         public int PedidoId { get; set; }
@@ -16,9 +16,5 @@ namespace ApiCerveja.DTO
 
         //Itens pedidos
         public List<Rotulo> Rotulos { get; set; }
-
-        // FK's
-        //public Vendedor Vendedor { get; set; }
-        //public int VendedorId { get; set; }
     }
 }

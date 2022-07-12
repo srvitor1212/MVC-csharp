@@ -35,18 +35,17 @@ namespace ApiCerveja.Controllers
         //-------------------------------------------------------------------------------------------
         [HttpGet]
         [Route("api/BuscarTodosCompleto")]
-        public async Task<ActionResult<IEnumerable<PedidoDTO>>> BuscarTodosCompleto()
+        public async Task<ActionResult<IEnumerable<PedidoCompleto>>> BuscarTodosCompleto()
         {
-        
+            List<PedidoCompleto> ret = new List<PedidoCompleto>();
+
             var pedidos = _pedidoService.FindAllComplete();
             var pedidoERotulo = _pedidoERotuloService.FindAll();
-            var rotulos = _rotuloService.FindAll();
-
-            List<PedidoDTO> ret = new List<PedidoDTO>();
+            var rotulos = _rotuloService.FindAll();            
 
             foreach (var p in pedidos)
             {
-                PedidoDTO pDto = new PedidoDTO();
+                PedidoCompleto pDto = new PedidoCompleto();
                 pDto.PedidoId =     p.Id;
                 pDto.PedidoData =   p.Data;
                 pDto.PedidoValor =  p.Valor;
@@ -59,13 +58,23 @@ namespace ApiCerveja.Controllers
                     if (p.Id == pr.PedidoId)
                     {
                         Rotulo rot = new Rotulo();
-                        rot.Id = pr.RotuloId;
-                        rot.Nome = "Teste";
+                        if ( rotulos.Exists(r => r.Id == pr.RotuloId) )
+                        {
+                            var dadosDoRotulo = rotulos.Find(r => r.Id == pr.RotuloId);
+                            rot.Id = dadosDoRotulo.Id;
+                            rot.Nome = dadosDoRotulo.Nome;
+                        } else
+                        {
+                            rot.Id = 0;
+                            rot.Nome = "Não cadastrado";
+                        }
+
+
                         rotulosPedido.Add(rot);
                     }
                 }
 
-                pDto.Rotulos = new(rotulosPedido);
+                pDto.Rotulos = rotulosPedido;
                 ret.Add(pDto);
             }
             
