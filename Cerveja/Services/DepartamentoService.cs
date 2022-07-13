@@ -1,5 +1,7 @@
-﻿using Cerveja.Models;
+﻿using Cerveja.Services.Exceptions;
+using Cerveja.Models;
 using Cerveja.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cerveja.Services
 {
@@ -34,8 +36,20 @@ namespace Cerveja.Services
         //---------------------------------------------------------------------------------------------------------
         public void Update(Departamento dep)
         {
-            _context.Departamento.Update(dep);
-            _context.SaveChanges();
+            if ( !_context.Departamento.Any(d => d.Id == dep.Id) ) // se não encontrar nenhum departament com esse ID
+            {
+                throw new ServiceNotFoundException("Id não encontrado!");
+            }
+
+            try
+            {
+                _context.Departamento.Update(dep);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException e)  //excessão do entity framework
+            {
+                throw new ServiceConcurrencyException(e.Message);
+            }
         }
 
         //---------------------------------------------------------------------------------------------------------

@@ -1,6 +1,9 @@
-﻿using Cerveja.Services;
+﻿using System.Diagnostics;
+using Cerveja.Models.ViewModels;
+using Cerveja.Services;
 using Microsoft.AspNetCore.Mvc;
 using Cerveja.Models;
+using Cerveja.Services.Exceptions;
 
 namespace Cerveja.Controllers
 {
@@ -35,12 +38,12 @@ namespace Cerveja.Controllers
         }
 
         //-----------------------------------------------------------------------------------------------------
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int? id)
         {
             if (id == null)
                 return NotFound();
 
-            var dep = _departamentoService.FindById(id);
+            var dep = _departamentoService.FindById(id.Value);
             if (dep == null)
                 return NotFound();
 
@@ -51,8 +54,19 @@ namespace Cerveja.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Departamento dep)
         {
-            _departamentoService.Update(dep);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                _departamentoService.Update(dep);
+                return RedirectToAction(nameof(Index));
+            } 
+            catch (ServiceNotFoundException e)
+            {
+                return RedirectToAction(nameof(Error), new { msg = e.Message });
+            }
+            catch (ServiceConcurrencyException e)
+            {
+                return RedirectToAction(nameof(Error), new { msg = e.Message });
+            }
         }
 
         //-----------------------------------------------------------------------------------------------------
@@ -87,6 +101,17 @@ namespace Cerveja.Controllers
         {
             _departamentoService.Remove(id);
             return RedirectToAction(nameof(Index));
+        }
+
+        //-----------------------------------------------------------------------------------------------------
+        public IActionResult Error(string msg)
+        {
+            var viewModel = new ErrorViewModel {
+                Message = msg,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+
+            return View(viewModel);
         }
     }
 }
