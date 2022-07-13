@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Cerveja.Models
 
@@ -7,7 +7,13 @@ namespace Cerveja.Models
     {
         public int Id { get; set; }
         public string Nome { get; set; }
+
+        [Display(Name = "Data Nascimento")]
+        [DataType(DataType.Date)]
         public DateTime DataNascimento { get; set; }
+
+        [Display(Name = "Salário")]
+        [DisplayFormat(DataFormatString = "{0:F2}")]
         public double Salario { get; set; }
      
         // FK's
