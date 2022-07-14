@@ -8,13 +8,18 @@ namespace Cerveja.Models
         [Display(Name = "Código")]
         public int Id { get; set; }
 
+
         [DataType(DataType.Date)]
         public DateTime Data { get; set; }
 
+
         [DisplayFormat(DataFormatString = "{0:F2}")]
         public double Valor { get; set; }
+        
+        
         public StatusPedido Status { get; set; }
         
+
         // FK's
         public Vendedor Vendedor { get; set; }
         public int VendedorId { get; set; }

@@ -1,8 +1,12 @@
-﻿namespace Cerveja.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Cerveja.Models
 {
     public class PedidoRotulos
     {
         public int Id { get; set; }
+
+
         public int Quantidade { get; set; }
 
         // FK's

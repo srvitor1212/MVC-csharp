@@ -45,10 +45,10 @@ namespace Cerveja.Controllers
             var rotulo = _rotuloService.FindById(form.RotuloId);
 
             if (vendedor == null)
-                return Problem("Vendedor inválido!");
+                return Problem("Vendedor inválido!"); //todo: Jogar para tela de erro
 
             if (rotulo == null)
-                return Problem("Rótulo inválido!");
+                return Problem("Rótulo inválido!"); //todo: Jogar para tela de erro
 
             DateTime dtNow = DateTime.Now;
             Pedido pedido = new Pedido(0, dtNow, form.Valor, StatusPedido.Pendente, vendedor);
