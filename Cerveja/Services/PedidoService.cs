@@ -13,15 +13,12 @@ namespace Cerveja.Services
             _context = context;
         }
 
-        //---------------------------------------------------------------------------------
         public List<Pedido> FindAll()
         {
             var pedidos = _context.Pedido.Include(x => x.Vendedor).ToList();
 
             return pedidos;
         }
-
-        //---------------------------------------------------------------------------------
         public void Insert(Pedido pedido, Rotulo rotulo, int qtd)
         {
             _context.Pedido.Add(pedido);

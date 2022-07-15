@@ -14,26 +14,19 @@ namespace Cerveja.Services
             _context = context;
         }
 
-        //---------------------------------------------------------------------------------------------------------
         public List<Departamento> FindAll()
         {
             return _context.Departamento.OrderBy(x => x.Nome).ToList();     //Ordenar por nome
         }
-
-        //---------------------------------------------------------------------------------------------------------
         public void Insert(Departamento dep)
         {
             _context.Add(dep);
             _context.SaveChanges();
         }
-
-        //---------------------------------------------------------------------------------------------------------
         public Departamento FindById(int id)
         {
             return _context.Departamento.Find(id);
         }
-
-        //---------------------------------------------------------------------------------------------------------
         public void Update(Departamento dep)
         {
             if ( !_context.Departamento.Any(d => d.Id == dep.Id) ) // se não encontrar nenhum departament com esse ID
@@ -51,8 +44,6 @@ namespace Cerveja.Services
                 throw new ServiceConcurrencyException(e.Message);
             }
         }
-
-        //---------------------------------------------------------------------------------------------------------
         public void Remove(int id)
         {
             var obj = _context.Departamento.Find(id);
