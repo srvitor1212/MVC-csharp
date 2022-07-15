@@ -16,30 +16,18 @@ namespace Cerveja.Controllers
             this._departamentoService = departamentoService;
         }
 
-        //---------------------------------------------------------------------------------------------
+        //Method GET
         public IActionResult Index()
         {
             var list = _vendedorService.FindAll();
             return View(list);
         }
-
-        //---------------------------------------------------------------------------------------------
         public IActionResult Create()
         {
             var deps = _departamentoService.FindAll();
             var viewModel = new VendedorFormViewModel { Departamentos = deps };
             return View(viewModel);
         }
-
-        [HttpPost]  //Isso é uma Notation
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(Vendedor vendedor)
-        {
-            _vendedorService.Insert(vendedor);
-            return RedirectToAction(nameof(Index));
-        }
-
-        //---------------------------------------------------------------------------------------------
         public IActionResult Delete(int? id)
         {
             if (id == null)
@@ -51,16 +39,6 @@ namespace Cerveja.Controllers
 
             return View(obj);
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
-        {
-            _vendedorService.Remove(id);
-            return RedirectToAction(nameof(Index));
-        }
-
-        //---------------------------------------------------------------------------------------------
         public IActionResult Details(int? id)
         {
             if (id == null)
@@ -72,8 +50,6 @@ namespace Cerveja.Controllers
 
             return View(obj);
         }
-
-        //---------------------------------------------------------------------------------------------
         public IActionResult Edit(int id)
         {
             if (id == null)
@@ -89,12 +65,28 @@ namespace Cerveja.Controllers
             return View(viewModel);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //Method POST
+        [HttpPost] [ValidateAntiForgeryToken]
         public IActionResult Edit(Vendedor vendedor)
         {
             _vendedorService.Update(vendedor);
 
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        [HttpPost] [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            _vendedorService.Remove(id);
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        [HttpPost] [ValidateAntiForgeryToken] //Isso é uma Notation
+        public IActionResult Create(Vendedor vendedor)
+        {
+            _vendedorService.Insert(vendedor);
             return RedirectToAction(nameof(Index));
         }
     }
