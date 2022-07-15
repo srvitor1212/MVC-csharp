@@ -29,3 +29,11 @@ DTO = Data Transfer Object
 4- Criar projeto MVC:
     mkdir Nome_Projeto
     dotnew new mvc
+	
+Estrutura de tópicos VISUAL STUDIO
+
+Recolhe todos
+CTRL + M O 
+
+Mostra todos
+CTRL + M L
