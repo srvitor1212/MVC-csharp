@@ -52,29 +52,32 @@ namespace ApiCerveja.Controllers
                 pDto.PedidoStatus = p.Status;
                 pDto.VendedorNome = p.Vendedor.Nome;
 
-                List<Rotulo> rotulosPedido = new List<Rotulo>();
+                List<RotuloEQuantidade> rotulosPedido = new List<RotuloEQuantidade>();
                 foreach (var pr in pedidoERotulo)
                 {
                     if (p.Id == pr.PedidoId)
                     {
-                        Rotulo rot = new Rotulo();
-                        if ( rotulos.Exists(r => r.Id == pr.RotuloId) )
+                        RotuloEQuantidade rEQ = new RotuloEQuantidade();
+                        rEQ.Rotulo = new Rotulo();
+                        
+                        if (rotulos.Exists(r => r.Id == pr.RotuloId) )
                         {
                             var dadosDoRotulo = rotulos.Find(r => r.Id == pr.RotuloId);
-                            rot.Id = dadosDoRotulo.Id;
-                            rot.Nome = dadosDoRotulo.Nome;
+                            rEQ.Rotulo.Id = dadosDoRotulo.Id;
+                            rEQ.Rotulo.Nome = dadosDoRotulo.Nome;
+                            rEQ.Quantidade = pr.Quantidade;
                         } else
                         {
-                            rot.Id = 0;
-                            rot.Nome = "Não cadastrado";
+                            rEQ.Rotulo.Id = 0;
+                            rEQ.Rotulo.Nome = "Não cadastrado";
+                            rEQ.Quantidade = 1;
                         }
 
-
-                        rotulosPedido.Add(rot);
+                        rotulosPedido.Add(rEQ);
                     }
                 }
 
-                pDto.Rotulos = rotulosPedido;
+                pDto.RotuloEQuantidade = rotulosPedido;
                 ret.Add(pDto);
             }
             
