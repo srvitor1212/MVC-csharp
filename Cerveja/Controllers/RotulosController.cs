@@ -13,28 +13,16 @@ namespace Cerveja.Controllers
             _rotuloService = rotuloService;
         }
 
-        //-----------------------------------------------------------------------------------------------------
+        //Method GET
         public IActionResult Index()
         {
             var list = _rotuloService.FindAll();
             return View(list);
         }
-
-        //-----------------------------------------------------------------------------------------------------
         public IActionResult Create()
         {
             return View();
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(Rotulo obj)
-        {
-            _rotuloService.Insert(obj);
-            return RedirectToAction(nameof(Index));
-        }
-
-        //-----------------------------------------------------------------------------------------------------
         public IActionResult Edit(int id)
         {
             if (id == null)
@@ -46,16 +34,6 @@ namespace Cerveja.Controllers
 
             return View(obj);
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(Rotulo obj)
-        {
-            _rotuloService.Update(obj);
-            return RedirectToAction(nameof(Index));
-        }
-
-        //-----------------------------------------------------------------------------------------------------
         public IActionResult Details(int? id)
         {
             if (id == null)
@@ -67,8 +45,6 @@ namespace Cerveja.Controllers
 
             return View(obj);
         }
-
-        //-----------------------------------------------------------------------------------------------------
         public IActionResult Delete(int? id)
         {
             if (id == null)
@@ -81,11 +57,27 @@ namespace Cerveja.Controllers
             return View(obj);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //Method POST
+        [HttpPost] [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
         {
             _rotuloService.Remove(id);
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        [HttpPost] [ValidateAntiForgeryToken]
+        public IActionResult Edit(Rotulo obj)
+        {
+            _rotuloService.Update(obj);
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        [HttpPost] [ValidateAntiForgeryToken]
+        public IActionResult Create(Rotulo obj)
+        {
+            _rotuloService.Insert(obj);
             return RedirectToAction(nameof(Index));
         }
     }

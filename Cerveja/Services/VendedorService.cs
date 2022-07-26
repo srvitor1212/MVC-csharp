@@ -13,14 +13,11 @@ namespace Cerveja.Services
             _context = context;
         }
 
-        //-------------------------------------------------------------------------------------------------------------
         public List<Vendedor> FindAll()
         {
             var vendedores = _context.Vendedor.Include(x => x.Departamento).ToList();
             return vendedores;
         }
-
-        //-------------------------------------------------------------------------------------------------------------
         public void Insert(Vendedor obj)
         {
             
@@ -33,8 +30,6 @@ namespace Cerveja.Services
             _context.Add(obj);
             _context.SaveChanges();
         }
-
-        //-------------------------------------------------------------------------------------------------------------
         public Vendedor FindById(int id)
         {
             //             |________incluir o obj departamento___________|__pega o primeiro cliente aonde id=id
@@ -42,16 +37,12 @@ namespace Cerveja.Services
 
             return vendedor;
         }
-
-        //-------------------------------------------------------------------------------------------------------------
         public void Remove(int id)
         {
             var obj = _context.Vendedor.Find(id);
             _context.Vendedor.Remove(obj);
             _context.SaveChanges();
         }
-
-        //-------------------------------------------------------------------------------------------------------------
         public void Update(Vendedor vendedor)
         {
             //todo: aqui tive que fazer dnvo pra puxar o Departamento.Nome

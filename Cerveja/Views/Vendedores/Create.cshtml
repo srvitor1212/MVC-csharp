@@ -11,21 +11,26 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create"> <!--Método POST-->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Vendedor.Nome" class="control-label"></label>
                 <input asp-for="Vendedor.Nome" class="form-control" />
+                <span asp-validation-for="Vendedor.Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Vendedor.DataNascimento" class="control-label"></label>
                 <input asp-for="Vendedor.DataNascimento" class="form-control" />
+                <span asp-validation-for="Vendedor.DataNascimento" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Vendedor.Salario" class="control-label"></label>
-                <input asp-for="Vendedor.Salario" class="form-control" />
+                <input asp-for="Vendedor.Salario" class="form-control" value="0" />
+                <span asp-validation-for="Vendedor.Salario" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Departamento</label>
+                <label asp-for="Departamentos" class="control-label"></label>
                 <select asp-for="Vendedor.Departamento.Id" asp-items="@(new SelectList(Model.Departamentos,"Id","Nome"))" class="form-select"></select>
+                <span asp-validation-for="Vendedor.Departamento.Id" class="text-danger"></span>
             </div>
 
             <!-- Botões -->
@@ -36,3 +41,7 @@
         </form>
     </div>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -11,7 +11,7 @@ namespace Cerveja.Controllers
         private readonly PedidoService _pedidoService;
         private readonly VendedorService _vendedorService;
         private readonly RotuloService _rotuloService;
-        public PedidosController(   PedidoService pedidoService, 
+        public PedidosController(PedidoService pedidoService,
                                     VendedorService vendedorService,
                                     RotuloService rotuloService)
         {
@@ -20,14 +20,12 @@ namespace Cerveja.Controllers
             this._rotuloService = rotuloService;
         }
 
-        //---------------------------------------------------------------------------------------------
+        // Method GET
         public IActionResult Index()
         {
             var list = _pedidoService.FindAll();
             return View(list);
         }
-
-        //---------------------------------------------------------------------------------------------
         public IActionResult Create()
         {
             var vendedores = _vendedorService.FindAll();
@@ -37,18 +35,18 @@ namespace Cerveja.Controllers
             return View(viewModel);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        // Method POST
+        [HttpPost] [ValidateAntiForgeryToken]
         public IActionResult Create(PedidoViewModel form)
         {
             var vendedor = _vendedorService.FindById(form.VendedorId);
             var rotulo = _rotuloService.FindById(form.RotuloId);
 
             if (vendedor == null)
-                return Problem("Vendedor inválido!");
+                return Problem("Vendedor inválido!"); //todo: Jogar para tela de erro
 
             if (rotulo == null)
-                return Problem("Rótulo inválido!");
+                return Problem("Rótulo inválido!"); //todo: Jogar para tela de erro
 
             DateTime dtNow = DateTime.Now;
             Pedido pedido = new Pedido(0, dtNow, form.Valor, StatusPedido.Pendente, vendedor);
