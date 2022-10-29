@@ -15,6 +15,7 @@ namespace ApiCerveja.DTO
         public string VendedorNome { get; set; }
 
         //Itens pedidos
-        public List<Rotulo> Rotulos { get; set; }
+        public List<RotuloEQuantidade> RotuloEQuantidade { get; set; }
+        //public List<Rotulo> Rotulos { get; set; }
     }
 }
